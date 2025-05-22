@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 """
 # Represents a job listing
 ## Do not use commas in any text feilds
@@ -30,7 +32,7 @@ class Job:
             )
         return jobs
 
-    def __init__(self, title: str, company: str, salary=None, description=None, id=None) -> None:
+    def __init__(self, title: str, company: str, salary: int | None = None, description: str | None = None, id: int | None = None) -> None:
         if id == None:
             with open("Jobs.csv", "r") as f:
                 lines = f.readlines()
@@ -46,10 +48,10 @@ class Job:
         self.__salary = salary
         self.__description = description
 
-    def set_salary(self, new_salary):
+    def set_salary(self, new_salary: int):
         self.__salary = new_salary
 
-    def update_description(self, new_description):
+    def update_description(self, new_description: str):
         self.__description = new_description
 
     def save(self):
