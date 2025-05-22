@@ -1,8 +1,17 @@
 from google import genai
 from Job import Job
 from typing import List, Dict, Optional
-from Candidate import Candidate
+# from Candidate import Candidate
 from dataclasses import dataclass
+
+@dataclass
+class Message:
+    """
+    Represents a message sent from the user 
+    """
+    sender: str
+    recipient: str
+    content: str
 
 class Agent:
     """
@@ -25,22 +34,26 @@ class Agent:
     Args:
         gemini_api_key (str): API key for accessing the Google Gemini service.
     """
-    # def __init__(self, gemini_api_key: str, candidate: Candidate, prospective_jobs: List[Job]) -> None:
     def __init__(self, gemini_api_key: str) -> None:
         self.__client = genai.Client(api_key=gemini_api_key)
 
-        self.__behavioral_instructions = "You are a professional job searching agent."
-        self.__conversation_history: List[Dict[str, str]] = []
+        self.__behavioral_instructions = "Respoond to the last message in the conversation."
+        self.__conversation_history: List[Message] = []    
 
-        # self.__context = [self.__behavioral_instructions, str(self.__canidate), [str(job) for job in prospective_jobs] self.__conversation_history]
-        self.__context = [self.__behavioral_instructions, str(self.__conversation_history)]
-    
-    def get_response(self, prompt: str, role: str = "agent") -> str:
-        """Generate a response using the Gemini model based on the current context and prompt.
+    @property
+    def context(self):
+        conversation_string = ""
+        for message in self.__conversation_history:
+            conversation_string += f"From :{message.sender} to {message.recipient}: {message.content}\n"
+        return [self.__behavioral_instructions, conversation_string]
+
+    def get_response(self, content: str, sender: str = "User", recipient: str = "Agent") -> str:
+        """
+        Generate a response using the Gemini model based on the current context and prompt.
         
         Args:
             prompt (str): The input prompt to generate a response for.
-            role (str): The role of the speaker (default: "agent").
+            role (str): The role of the speaker (default: "user").
 
         Returns:
             str: The generated response from the Gemini model.
@@ -50,33 +63,31 @@ class Agent:
             conversation history and context.
         """
         # Add the prompt to conversation history
-        self.add_conversation(role, prompt)
+        next_message = Message(sender, recipient, content)
+        self.add_conversation(next_message)
         
         # Get response from Gemini
-        response = self.__client.models.generate_content(
-            model="gemini-2.0-flash-001",
-            contents=self.__context
-        )
+        # TODO consider removing cast to list
+        response = self.__client.models.generate_content(model = "gemini-2.0-flash-001", contents = self.context)
         response_text = str(response.text)
         
         # Add the response to conversation history
-        self.add_conversation("agent", response_text)
-        
+        # TODO add cases that allow for more than a two way conversation. IE user sends to agent, agent sends to all
+        response_message = Message(sender = recipient, recipient = sender, content = response_text)
+        self.add_conversation(response_message)
         return response_text
 
-    def add_conversation(self, role: str, message: str) -> None:
-        """Add a conversation entry to the agent's history.
+    def add_conversation(self, message) -> None:
+        """
+        Add a conversation entry to the agent's history.
         
         Args:
             role (str): Who is speaking ('candidate', 'recruiter', 'agent')
             message (str): The message content
         """
-        self.__conversation_history.append({
-            'role': role,
-            'message': message
-        })
+        self.__conversation_history.append(message)
 
-    def get_conversation_history(self) -> List[Dict[str, str]]:
+    def get_conversation_history_str(self) -> List[Message]:
         """Get the agent's conversation history.
         
         Returns:
@@ -86,21 +97,23 @@ class Agent:
         return self.__conversation_history
 
     def update_behavioral_instructions(self, new_instructions: str) -> None:
-        """Update the agent's behavioral instructions.
+        """
+        # Add to the model's upfront instruction
         
         Args:
-            new_instructions (str): New instructions that define the agent's behavior.
+            new_instructions (str): Instructions to suppliment the default Agent behaviors.
         """
-        self.__behavioral_instructions = new_instructions
+        self.__behavioral_instructions += new_instructions
         # Update the first context item (behavioral instructions)
-        if self.__context:
-            self.__context[0] = new_instructions
-        else:
-            self.add_context(new_instructions)
 
 
+quit()
+
+# def __init__(self, gemini_api_key: str, candidate: Candidate, prospective_jobs: List[Job]) -> None:
+# self.__context = [self.__behavioral_instructions, str(self.__canidate), [str(job) for job in prospective_jobs] self.__conversation_history]
 class RecruiterAgent(Agent):
-    """AI agent specialized for recruiting and job matching.
+    """
+    AI agent specialized for recruiting and job matching.
     
     This agent represents a recruiter in the system, capable of searching through
     candidate profiles and engaging in negotiations. It inherits the base Agent
@@ -111,8 +124,11 @@ class RecruiterAgent(Agent):
         gemini_api_key (str): API key for accessing the Google Gemini service.
     """
     def __init__(self, jobs: List[Job], gemini_api_key: str) -> None:
-        super().__init__(gemini_api_key, "") # Add recruiter-specific behavioral rules
+        super().__init__(gemini_api_key) # Add recruiter-specific behavioral rules
 
+    @property
+    def context(self):
+        return [self.get_behavioral_instructions(), self.get_conversation_history()]
 
 class CandidateAgent(Agent):
     """AI agent specialized for job searching and candidate representation.

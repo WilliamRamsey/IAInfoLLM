@@ -1,11 +1,10 @@
+from os import environ
+from dotenv import load_dotenv
+
 from Agent import *
-from Candidate import * 
+load_dotenv()
 
-"""
-conversation = [{"role": "William", "message": "hey"}, {"role": "recruiter", "message": "whats up"}]
-print([f"{line["role"]}: {line["message"]}" for line in conversation])
-print(conversation)
-"""
+api_key = environ.get("GOOGLE_API_KEY")
+myAgent = Agent(api_key)
 
-myRecruiter = Agent("AIzaSyAViHH6WvYbY_2LbALBBIM1rXAcA9wM_gI")
-myRecruiter.get_response("Hello. How are you?")
+print(myAgent.get_response(content = "Hello world", sender="User", recipient="Agent"))
