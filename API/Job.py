@@ -5,6 +5,7 @@ from __future__ import annotations
 ## Do not use commas in any text feilds
 title, company, salary, description
 """
+
 class Job:
     __job_count = 0
     # Works like a lot like a Java static method, but respects inheritence

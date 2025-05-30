@@ -1,29 +1,22 @@
 from os import environ
 from dotenv import load_dotenv
-
-from google import genai
-from google.genai import types
-
-from Job import Job
+from Job import *
+from Agent import *
 
 # Load environmental variables stored in .env
 load_dotenv()
 
-# Creates Google Cloud Client
-client = genai.Client(api_key = environ.get("GOOGLE_API_KEY"))
+# Instantiate Canidate
+myJobDesires = JobDesires(100000, "Atlanta", "AI takeover defense engineer", "Sit in a server room with a bucket of water in case things get hairy.", "Relaxed ideally.", "Throw water on servers if AI decides to takeover humanity.")
+myQualifications = Qualifications(["OfferDox: Software Development Intern (May 2024 - Present)"], ["Purdue University: BS in Computer Engineering"], ["Python", "Java", "Water Pumping"])
+myCanidate = Candidate("William Ramsey", "williamdawsonramsey@gmail.com", myJobDesires, myQualifications)
 
-# Add job information to context
-job1 = Job("Software Engineer", "Microsoft", 120000, "You write code for copilot.")
-job1.save()
-context = [str(job) for job in Job.jobs_from_file()]
-context.append("You are a customer support chat bot for a job searching company.")
+# Instantiate canidate agent
+myCanidateAgent = CandidateAgent(myCanidate, str(environ.get("GOOGLE_API_KEY")))
 
+# Command line input
 while True:
     prompt = input("> ")
-    context.append(prompt)
-    response = client.models.generate_content(
-        model = "gemini-2.0-flash-001",
-        contents = context
-    )
-    context.append(response.text)
-    print(response.text)
+    message = Message("Candidate", "Agent", prompt)
+    print(myCanidateAgent.get_response(message))
+
