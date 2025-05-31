@@ -8,7 +8,7 @@ load_dotenv()
 
 # Instantiate Canidate
 myJobDesires = JobDesires(100000, "Atlanta", "AI takeover defense engineer", "Sit in a server room with a bucket of water in case things get hairy.", "Relaxed ideally.", "Throw water on servers if AI decides to takeover humanity.")
-myQualifications = Qualifications(["OfferDox: Software Development Intern (May 2024 - Present)"], ["Purdue University: BS in Computer Engineering"], ["Python", "Java", "Water Pumping"])
+myQualifications = Qualifications(["OfferDox: Software Development Intern (May 2024 - Present)", "Gym Bro Consultant (Jan of 2020 - May 2024)"], ["Purdue University: BS in Computer Engineering"], ["Python", "Java", "Water Pumping"])
 myCanidate = Candidate("William Ramsey", "williamdawsonramsey@gmail.com", myJobDesires, myQualifications)
 
 # Instantiate canidate agent

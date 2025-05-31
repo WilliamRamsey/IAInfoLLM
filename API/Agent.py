@@ -131,9 +131,23 @@ class CandidateAgent(Agent):
     """
     def __init__(self, candidate: Candidate, gemini_api_key: str) -> None:
         super().__init__(gemini_api_key)
-        self.candidate = candidate
-        self.update_behavioral_instructions("You are an agent that represents a canidate")
+        self.__candidate = candidate
+        self.__position_shortlist = []
+        self.__position_offers = []
+        self.update_behavioral_instructions("You are an agent representing a job searching candidate. Your primary")
     
     @property
     def context(self) -> list[str]:
-        return [super().get_behavioral_instructions(), str(self.candidate), super().get_conversation_history_str()]
+        return [super().get_behavioral_instructions(), str(self.__candidate), super().get_conversation_history_str()]
+
+class RecruitingAgent(Agent):
+    """
+    
+    """
+    def __init__(self, gemini_api_key: str) -> None:
+        super().__init__(gemini_api_key)
+        self.__candidate_short_list = []
+        self.__secured_candidate = []
+        self.update_behavioral_instructions("")
+    
+    

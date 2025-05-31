@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job</title>
+</head>
+<body>
+    <h1>Canidate Agent Chat</h1>
+    <div>
+        <dl>
+            <dt>User</dt>
+            <dd>Message 1</dd>
+            <dt>Agent</dt>
+            <dd>Message 2</dd>
+        </dl>
+    </div>
+    <form action="/API/get_response", method="post">
+        <p>
+            <input type="text" id="user_message">
+        </p>
+        <p>
+            <button type="submit">Send message</button>
+        </p>
+    </form>
+</body>
+</html>
