@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="nXNv6R9ZOGS5gi4z82Ms" name="Page-1">
-        <mxGraphModel dx="1141" dy="399" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="3602" dy="932" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -23,7 +23,7 @@
                 </mxCell>
                 <mxCell id="28" value="" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="25" target="66" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="260" y="870" as="targetPoint"/>
+                        <mxPoint x="540" y="860" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="49" value="Attributes" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="28" vertex="1" connectable="0">
@@ -35,12 +35,12 @@
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="25" value="Standard Query Job Desires&lt;br&gt;&lt;div&gt;- Salary&lt;/div&gt;&lt;div&gt;- Location&lt;/div&gt;&lt;div&gt;-&amp;nbsp; Position&lt;/div&gt;&lt;div&gt;- Description&lt;/div&gt;" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="30" y="770" width="120" height="100" as="geometry"/>
+                    <mxGeometry x="310" y="760" width="120" height="100" as="geometry"/>
                 </mxCell>
                 <mxCell id="60" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="66" target="67" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="380" y="870" as="sourcePoint"/>
-                        <mxPoint x="485.3199999999997" y="1036.19" as="targetPoint"/>
+                        <mxPoint x="660" y="860" as="sourcePoint"/>
+                        <mxPoint x="765.3199999999997" y="1026.19" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="62" value="Desired Job" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="60" vertex="1" connectable="0">
@@ -50,33 +50,33 @@
                 </mxCell>
                 <mxCell id="59" value="" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="29" target="67" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="490" y="1034.3478260869567" as="targetPoint"/>
+                        <mxPoint x="770" y="1024.3478260869567" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="29" value="Canidate Qualifications&lt;div&gt;Work experience&lt;/div&gt;" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="30" y="1000" width="120" height="60" as="geometry"/>
+                    <mxGeometry x="310" y="990" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="68" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="33" target="67" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="33" value="Canidate soft info&lt;div&gt;stored as text embedding&lt;/div&gt;" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="30" y="1090" width="120" height="60" as="geometry"/>
+                    <mxGeometry x="310" y="1080" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="34" style="edgeStyle=none;html=1;entryX=0.487;entryY=0.084;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="29" target="33" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="38" value="Presenting user offers" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="900" y="880" width="120" height="60" as="geometry"/>
+                    <mxGeometry x="1180" y="870" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="40" value="Recruiter Negotiations&lt;div&gt;feature creep&lt;/div&gt;" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="900" y="810" width="120" height="60" as="geometry"/>
+                    <mxGeometry x="1180" y="800" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="41" value="Recruiter Interview" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="900" y="740" width="120" height="60" as="geometry"/>
+                    <mxGeometry x="1180" y="730" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="47" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="45" target="66" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="260" y="870" as="targetPoint"/>
+                        <mxPoint x="540" y="860" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="48" value="Giant Text Attribute" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="47" vertex="1" connectable="0">
@@ -88,39 +88,39 @@
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="45" value="Semantic Job Desires&lt;div&gt;- Company Culture&lt;/div&gt;&lt;div&gt;- Responsibilities&amp;nbsp;&lt;/div&gt;" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="30" y="890" width="120" height="80" as="geometry"/>
+                    <mxGeometry x="310" y="880" width="120" height="80" as="geometry"/>
                 </mxCell>
                 <mxCell id="50" value="Canidate Database" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" parent="1" vertex="1">
-                    <mxGeometry x="520" y="870" width="60" height="80" as="geometry"/>
+                    <mxGeometry x="800" y="860" width="60" height="80" as="geometry"/>
                 </mxCell>
                 <mxCell id="65" style="edgeStyle=none;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="67" target="50" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="550" y="1000" as="sourcePoint"/>
+                        <mxPoint x="830" y="990" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="66" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;Job Instance&lt;div&gt;(Dream Job&lt;span style=&quot;background-color: transparent;&quot;&gt;)&lt;/span&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="270" y="870" width="120" height="60" as="geometry"/>
+                    <mxGeometry x="550" y="860" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="79" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="67" target="69" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="67" value="Canidate Instance&lt;div&gt;&lt;div&gt;- Canidate info&lt;/div&gt;&lt;div&gt;- Desired job info&lt;/div&gt;&lt;div&gt;- Agentic context&lt;/div&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="490" y="1000" width="120" height="70" as="geometry"/>
+                    <mxGeometry x="770" y="990" width="120" height="70" as="geometry"/>
                 </mxCell>
                 <mxCell id="81" value="" style="edgeStyle=none;html=1;" parent="1" source="69" target="80" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="69" value="Canidate Agent&lt;div&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;Behavioral Instructions&lt;/span&gt;&lt;div&gt;&lt;div&gt;Conversation History&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="450" y="1110" width="200" height="170" as="geometry"/>
+                    <mxGeometry x="730" y="1100" width="200" height="170" as="geometry"/>
                 </mxCell>
                 <mxCell id="80" value="Conversation" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
-                    <mxGeometry x="425" y="1330" width="120" height="60" as="geometry"/>
+                    <mxGeometry x="705" y="1320" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="94" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Canidate Agent Initialization&lt;/h1&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
-                    <mxGeometry x="190" y="720" width="350" height="40" as="geometry"/>
+                    <mxGeometry x="470" y="710" width="350" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="97" value="Agent(gemini_api_key: str)" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="-780" y="230" width="390" height="292" as="geometry">
+                    <mxGeometry x="-780" y="230" width="390" height="298" as="geometry">
                         <mxRectangle x="-500" y="505" width="70" height="30" as="alternateBounds"/>
                     </mxGeometry>
                 </mxCell>
@@ -130,26 +130,26 @@
                 <mxCell id="125" value="+ __behavioral_instructions: str" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="97" vertex="1">
                     <mxGeometry y="52" width="390" height="26" as="geometry"/>
                 </mxCell>
+                <mxCell id="154" value="&lt;span style=&quot;color: rgb(255, 255, 255); font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(27, 29, 30); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;+ conversation_history: list[Message]&lt;/span&gt;&lt;div&gt;&lt;br/&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="97" vertex="1">
+                    <mxGeometry y="78" width="390" height="26" as="geometry"/>
+                </mxCell>
                 <mxCell id="99" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="97" vertex="1">
-                    <mxGeometry y="78" width="390" height="8" as="geometry"/>
+                    <mxGeometry y="104" width="390" height="8" as="geometry"/>
                 </mxCell>
                 <mxCell id="144" value="+ @property context: list[Message]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="97" vertex="1">
-                    <mxGeometry y="86" width="390" height="24" as="geometry"/>
-                </mxCell>
-                <mxCell id="101" value="+ conversation_history: list[Message]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="97" vertex="1">
-                    <mxGeometry y="110" width="390" height="20" as="geometry"/>
+                    <mxGeometry y="112" width="390" height="24" as="geometry"/>
                 </mxCell>
                 <mxCell id="146" value="+ str get_response(prompt: Message)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="97" vertex="1">
-                    <mxGeometry y="130" width="390" height="30" as="geometry"/>
+                    <mxGeometry y="136" width="390" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="145" value="+ void update_conversation_history(Message)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="97" vertex="1">
-                    <mxGeometry y="160" width="390" height="44" as="geometry"/>
+                    <mxGeometry y="166" width="390" height="44" as="geometry"/>
                 </mxCell>
                 <mxCell id="140" value="+ void update_conversation_history(Message)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="97" vertex="1">
-                    <mxGeometry y="204" width="390" height="44" as="geometry"/>
+                    <mxGeometry y="210" width="390" height="44" as="geometry"/>
                 </mxCell>
                 <mxCell id="141" value="+ void update_conversation_history(Message)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="97" vertex="1">
-                    <mxGeometry y="248" width="390" height="44" as="geometry"/>
+                    <mxGeometry y="254" width="390" height="44" as="geometry"/>
                 </mxCell>
                 <mxCell id="148" style="edgeStyle=none;html=1;" parent="1" source="104" target="141" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
@@ -186,6 +186,38 @@
                 </mxCell>
                 <mxCell id="149" value="CandidateAgent" style="html=1;whiteSpace=wrap;" parent="1" vertex="1">
                     <mxGeometry x="-310" y="642" width="110" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="155" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Candidate Instantiation (Initial interview)&lt;/h1&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="-820" y="800" width="490" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="160" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="156" target="161">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="-760" y="920" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="156" value="CandidateAgent" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="-820" y="850" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="165" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="157" target="164">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="157" value="Collect candidate qualifications and preferences" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="-820" y="990" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="163" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="161" target="157">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="161" value="Instantiate empty candidate class" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="-820" y="910" width="120" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="167" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="164" target="166">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="164" value="Update candidate preferences with functions defined to gemini" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="-820" y="1070" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="166" value="Save candidate to big query" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="-820" y="1150" width="120" height="60" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>

@@ -28,9 +28,9 @@ class Qualifications:
     """
     Candidate's work experience and qualifications
     """
-    work_experience: List[str]  # List of work experiences with company, role, duration, etc.
-    education: List[str]  # List of educational qualifications
-    skills: List[str]  # List of technical and soft skills
+    work_experience: Optional[List[str]] = None  # List of work experiences with company, role, duration, etc.
+    education: Optional[List[str]] = None # List of educational qualifications
+    skills: Optional[List[str]] = None # List of technical and soft skills
 
 class Candidate:
     """
@@ -74,4 +74,4 @@ class Candidate:
         
     def __str__(self):
         return f"{self.__name} wants a job with the following information:\n{str(self.__job_desires)}"
-    
+

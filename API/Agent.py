@@ -1,19 +1,11 @@
 from google import genai
+from google.genai import types
 from typing import List
 from Candidate import *
 from dataclasses import dataclass
 
-@dataclass
-class Message:
-    """
-    Represents a message sent from the user 
-    """
-    sender: str
-    recipient: str
-    content: str
-
 """
-# Context formatted
+# Context format
 Behavioral instructions (paragraph)
 
 Canidate attributes
@@ -24,14 +16,21 @@ Conversation history
 
 """
 
+@dataclass
+class Message:
+    """
+    Represents a message used for prompting agents and storing a conversation history.
+    """
+    sender: str
+    recipient: str
+    content: str
+
+
 class Agent:
     """
-    AI agent powered by Google's Gemini model for handling conversations and negotiations.
-    
-    
-    This class represents an AI agent that can maintain conversation context, handle
-    behavioral instructions, and interact with users through the Gemini language model.
-    The agent's behavior is determined by its context and instructions.
+    A core class that manages the context for a Gemini Agent and allows for prompting with [Messages]
+    It maintains generic behavioral instructions and a conversation history.
+    The conversation history is stored as a list of [Messages]
 
     Attributes:
         __context (List[str]): List of conversation context items that provide
@@ -134,11 +133,17 @@ class CandidateAgent(Agent):
         self.__candidate = candidate
         self.__position_shortlist = []
         self.__position_offers = []
-        self.update_behavioral_instructions("You are an agent representing a job searching candidate. Your primary")
+        self.update_behavioral_instructions("You are an agent representing a job searching candidate. Determine and save the candidates ideal location and salary.")
     
     @property
     def context(self) -> list[str]:
         return [super().get_behavioral_instructions(), str(self.__candidate), super().get_conversation_history_str()]
+    
+    def set_desired_location(self, location: str) -> None:
+        self.__candidate.__job_desires.location = location
+    
+    def set_desired_salary(self, salary: int) -> None:
+        self.__candidate.__job_desires.salary = salary
 
 class RecruitingAgent(Agent):
     """

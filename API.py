@@ -3,6 +3,13 @@ from flask import Flask, jsonify, request
 app = Flask(__name__)
 @app.route('/Client/Chat.html', methods=['GET'])
 def chat_page():
+    """
+    # New user workflow
+    Landing page 
+    Instantiates empty candidate.
+    Instantiates new Candidate agent.
+    Agent calls setter instance methods of the candidate to update information.
+    """
     with open("Client/Chat.html") as html_file:
         return html_file.read()
 

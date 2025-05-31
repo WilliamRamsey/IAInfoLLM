@@ -3,12 +3,21 @@ from dotenv import load_dotenv
 from Job import *
 from Agent import *
 
+"""
+# New user workflow
+Landing page 
+Instantiates empty candidate.
+Instantiates new Candidate agent.
+Agent calls setter instance methods of the candidate to update information.
+"""
+
 # Load environmental variables stored in .env
 load_dotenv()
 
 # Instantiate Canidate
-myJobDesires = JobDesires(100000, "Atlanta", "AI takeover defense engineer", "Sit in a server room with a bucket of water in case things get hairy.", "Relaxed ideally.", "Throw water on servers if AI decides to takeover humanity.")
-myQualifications = Qualifications(["OfferDox: Software Development Intern (May 2024 - Present)", "Gym Bro Consultant (Jan of 2020 - May 2024)"], ["Purdue University: BS in Computer Engineering"], ["Python", "Java", "Water Pumping"])
+myJobDesires = JobDesires()
+myQualifications = Qualifications()
+# Not empty, we get name and email from sign up page.
 myCanidate = Candidate("William Ramsey", "williamdawsonramsey@gmail.com", myJobDesires, myQualifications)
 
 # Instantiate canidate agent
