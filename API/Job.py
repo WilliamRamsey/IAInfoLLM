@@ -12,7 +12,7 @@ class Job:
     # Very boldly assuemes there are no commas in titles or descriptions
     @classmethod
     def jobs_from_file(cls) -> list['Job']:
-        with open("Jobs.csv", "r") as f:
+        with open("API/Jobs.csv", "r") as f:
             lines = f.readlines()
         f.close()
         Job.__job_count = len(lines)
@@ -27,15 +27,15 @@ class Job:
                 title = str(job_attributes[1]),
                 company = str(job_attributes[2]),
                 salary = int(job_attributes[3]),
-                description = str(job_attributes[4],
-                                  )
+                location = str(job_attributes[4]),
+                description = str(job_attributes[5]),
                 )
             )
         return jobs
 
-    def __init__(self, title: str, company: str, salary: int | None = None, description: str | None = None, id: int | None = None) -> None:
+    def __init__(self, title: str, company: str, salary: int, location: str, description: str | None = None, id: int | None = None,) -> None:
         if id == None:
-            with open("Jobs.csv", "r") as f:
+            with open("API/Jobs.csv", "r") as f:
                 lines = f.readlines()
             f.close()
             Job.__job_count = len(lines) + 1
@@ -47,6 +47,7 @@ class Job:
         self.__title = title
         self.__company = company
         self.__salary = salary
+        self.__location = location
         self.__description = description
 
     def set_salary(self, new_salary: int):
@@ -57,12 +58,14 @@ class Job:
 
     def save(self):
         with open("Jobs.csv", "a") as f:
-            f.write(f"{self.__id}, {self.__title}, {self.__company}, {self.__salary}, {self.__description}\n")
+            f.write(f"{self.__id}, {self.__title}, {self.__company}, {self.__salary}, {self.__location}, {self.__description}\n")
     
+    def get_salary(self) -> int:
+        return self.__salary
+
+    def get_location(self) -> str | None:
+        return self.__location
+
     def __str__(self):
-        job_info = f"Job (No. {self.__id}): {self.__title} at {self.__company}"
-        if self.__salary:
-            job_info += f", Salary: {self.__salary}"
-        if self.__description:
-            job_info += f", Description: {self.__description}"
-        return job_info
+        return f"Job (No. {self.__id}): {self.__title} at {self.__company} in {self.__location}, Salary: {self.__salary}, , Description: {self.__description}"
+

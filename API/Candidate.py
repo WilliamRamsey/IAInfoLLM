@@ -10,8 +10,9 @@ class JobDesires:
     Standard and semantic job preferences for a candidate.
     Yes this is redundant with the Job class, 
     """
-    # Standard query attributes
-    salary: Optional[int] = None
+    # Qualititive attributes
+    ideal_salary: Optional[int] = None
+    minimum_salary: Optional[int] = None
     location: Optional[str] = None
     position: Optional[str] = None
     description: Optional[str] = None
@@ -21,7 +22,7 @@ class JobDesires:
     responsibilities: Optional[str] = None
 
     def __str__(self):
-        return f"salary: {self.salary}, location: {self.location}, position: {self.position}, description: {self.description}, company culture: {self.company_culture}, responsibilities: {self.responsibilities}"
+        return f"Ideal salary: {self.ideal_salary}, Minimum salary: {self.minimum_salary} location: {self.location}, position: {self.position}, description: {self.description}, company culture: {self.company_culture}, responsibilities: {self.responsibilities}"
     
 @dataclass
 class Qualifications:
@@ -31,6 +32,9 @@ class Qualifications:
     work_experience: Optional[List[str]] = None  # List of work experiences with company, role, duration, etc.
     education: Optional[List[str]] = None # List of educational qualifications
     skills: Optional[List[str]] = None # List of technical and soft skills
+
+    def __str__(self):
+        return f"work experience: {self.work_experience}, education: {self.education}, skills: {self.skills}"
 
 class Candidate:
     """
@@ -73,5 +77,5 @@ class Candidate:
         self.__offers: List[Job] = []  # List of job offers received
         
     def __str__(self):
-        return f"{self.__name} wants a job with the following information:\n{str(self.__job_desires)}"
+        return f"{self.__name} wants a job with the following information:\n{str(self.__job_desires)}\nThe candidate has the following qualifications: {str(self.__qualifications)}"
 

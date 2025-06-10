@@ -1,8 +1,9 @@
 from google import genai
 from google.genai import types
 from typing import List
-from Candidate import *
 from dataclasses import dataclass
+from Candidate import *
+from Gemini_Functions import *
 
 """
 # Context format
@@ -25,7 +26,6 @@ class Message:
     recipient: str
     content: str
 
-
 class Agent:
     """
     A core class that manages the context for a Gemini Agent and allows for prompting with [Messages]
@@ -45,6 +45,10 @@ class Agent:
         gemini_api_key (str): API key for accessing the Google Gemini service.
     """
     def __init__(self, gemini_api_key: str) -> None:
+        # Function instantiation
+        tools = types.Tool(function_declarations=[query_jobs_declaration])
+        self.__config = types.GenerateContentConfig(tools=[tools])
+        # Client instantiation
         self.__client = genai.Client(api_key=gemini_api_key)
 
         self.__behavioral_instructions = "Respoond to the last message in the conversation."
@@ -73,16 +77,34 @@ class Agent:
         self.add_conversation(message)
         
         # Get response from Gemini
-        # TODO consider removing cast to list
-        response = self.__client.models.generate_content(model = "gemini-2.0-flash-001", contents = self.context)
-        response_text = str(response.text)
+        response = self.__client.models.generate_content(model = "gemini-2.0-flash-001",
+                                                         contents = self.context,
+                                                         config=self.__config)
         
-        # Add the response to conversation history
-        # TODO add cases that allow for more than a two way conversation. IE user sends to agent, agent sends to all
-        response_message = Message(sender = message.recipient, recipient = message.sender, content = response_text)
-        self.add_conversation(response_message)
+        # Check to see if query jobs function was called
+        # TODO Implement differentiation for different model function calls
+        if response.candidates[0].content.parts[0].function_call: # type: ignore
+            # Parse actual funciton call from response
+            function_call = response.candidates[0].content.parts[0].function_call # type: ignore
+            minimum_salary = function_call.args["minimum_salary"] # type: ignore
+            location = function_call.args["location"] # type: ignore
+            # Actually call the function with the arguments provided by LLM
+            matching_jobs = query_jobs(minimum_salary, location)
+            # Update the conversation context to include job search and results
+            job_request_message = Message("Agent", "Job Database", f"query_jobs({minimum_salary}, {location})")
+            job_response_message = Message("Job Database", "Agent", matching_jobs)
+            self.add_conversation(job_request_message)
+            return self.get_response(job_response_message)
 
-        return response_text
+        else:
+            response_text = str(response.text)
+        
+            # Add the response to conversation history
+            # TODO add cases that allow for more than a two way conversation. IE user sends to agent, agent sends to all
+            response_message = Message(sender = message.recipient, recipient = message.sender, content = response_text)
+            self.add_conversation(response_message)
+
+            return response_text
 
     def add_conversation(self, message) -> None:
         """
@@ -133,7 +155,7 @@ class CandidateAgent(Agent):
         self.__candidate = candidate
         self.__position_shortlist = []
         self.__position_offers = []
-        self.update_behavioral_instructions("You are an agent representing a job searching candidate. Determine and save the candidates ideal location and salary.")
+        self.update_behavioral_instructions("You are a job searching agent having a conversation with the candidate you represent.")
     
     @property
     def context(self) -> list[str]:
@@ -143,7 +165,7 @@ class CandidateAgent(Agent):
         self.__candidate.__job_desires.location = location
     
     def set_desired_salary(self, salary: int) -> None:
-        self.__candidate.__job_desires.salary = salary
+        self.__candidate.__job_desires.ideal_salary = salary
 
 class RecruitingAgent(Agent):
     """
@@ -154,5 +176,4 @@ class RecruitingAgent(Agent):
         self.__candidate_short_list = []
         self.__secured_candidate = []
         self.update_behavioral_instructions("")
-    
     

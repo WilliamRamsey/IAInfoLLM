@@ -1,21 +1,21 @@
-1, Junior Software Engineer, Microsoft, 100000, You assist in maintaining legacy C Sharp systems and support senior developers with code reviews and bug fixes.
-2, Software Engineer, Microsoft, 120000, You design backend services for new features in Office365 and collaborate with product teams in agile sprints.
-3, Data Analyst, Google, 95000, You clean large datasets using SQL and Python to uncover business insights and prepare visualizations for stakeholders.
-4, Backend Developer, Amazon, 115000, You develop scalable microservices using Java and AWS Lambda for internal tools used by operations teams.
-5, AI Researcher, OpenAI, 150000, You build transformer based architectures and conduct experiments to evaluate emerging alignment techniques.
-6, Systems Engineer, IBM, 105000, You maintain enterprise grade Linux servers and implement automation scripts to reduce manual deployment overhead.
-7, UX Designer, Adobe, 98000, You lead user research interviews and prototype Figma wireframes for new features in the Creative Cloud suite.
-8, DevOps Engineer, Netflix, 125000, You manage CI CD pipelines and write monitoring tools to ensure consistent and high availability deployments.
-9, Frontend Developer, Meta, 110000, You implement responsive interfaces in React and TypeScript for core social features used by billions of users.
-10, Security Engineer, Cloudflare, 130000, You audit internal systems for vulnerabilities and write mitigation tools to prevent common attack vectors.
-11, Mobile Developer, Twitter, 108000, You optimize Android app performance and build new UI components for enhanced timeline experience.
-12, Network Engineer, Cisco, 102000, You configure switches and routers for enterprise clients and troubleshoot network bottlenecks with diagnostics tools.
-13, Database Administrator, Oracle, 99000, You manage relational database backups and optimize queries for mission critical transactional systems.
-14, Robotics Engineer, BostonDynamics, 140000, You write control algorithms for robotic limbs and collaborate with mechanical engineers on joint calibration.
-15, Game Developer, Nintendo, 95000, You script gameplay logic in C++ and implement user feedback systems for upcoming Switch titles.
-16, Product Manager, Salesforce, 125000, You define quarterly roadmaps and manage cross functional teams to deliver CRM features on time and under budget.
-17, Full Stack Developer, Shopify, 112000, You write GraphQL APIs and implement responsive admin dashboards used by small business merchants.
-18, QA Engineer, Atlassian, 91000, You develop automated integration tests and work closely with developers to identify root causes of UI regressions.
-19, Cloud Engineer, Google, 128000, You deploy containerized applications using Kubernetes and troubleshoot issues in multiregion environments.
-20, Machine Learning Engineer, Tesla, 145000, You train object detection models for onboard vision systems and implement real time inference pipelines.
-21, Software Engineer, Microsoft, 120000, You write code for copilot.
+1, Junior Software Engineer, Microsoft, 100000, Atlanta, You assist in maintaining legacy C Sharp systems and support senior developers with code reviews and bug fixes.
+2, Software Engineer, Microsoft, 120000, Atlanta, You design backend services for new features in Office365 and collaborate with product teams in agile sprints.
+3, Data Analyst, Google, 95000, Atlanta, You clean large datasets using SQL and Python to uncover business insights and prepare visualizations for stakeholders.
+4, Backend Developer, Amazon, 115000, Atlanta, You develop scalable microservices using Java and AWS Lambda for internal tools used by operations teams.
+5, AI Researcher, OpenAI, 150000, Atlanta, You build transformer based architectures and conduct experiments to evaluate emerging alignment techniques.
+6, Systems Engineer, IBM, 105000, Atlanta, You maintain enterprise grade Linux servers and implement automation scripts to reduce manual deployment overhead.
+7, UX Designer, Adobe, 98000, Atlanta, You lead user research interviews and prototype Figma wireframes for new features in the Creative Cloud suite.
+8, DevOps Engineer, Netflix, 125000, Atlanta, You manage CI CD pipelines and write monitoring tools to ensure consistent and high availability deployments.
+9, Frontend Developer, Meta, 110000, Atlanta, You implement responsive interfaces in React and TypeScript for core social features used by billions of users.
+10, Security Engineer, Cloudflare, 130000, Atlanta, You audit internal systems for vulnerabilities and write mitigation tools to prevent common attack vectors.
+11, Mobile Developer, Twitter, 108000, Atlanta, You optimize Android app performance and build new UI components for enhanced timeline experience.
+12, Network Engineer, Cisco, 102000, Atlanta, You configure switches and routers for enterprise clients and troubleshoot network bottlenecks with diagnostics tools.
+13, Database Administrator, Oracle, 99000, Atlanta, You manage relational database backups and optimize queries for mission critical transactional systems.
+14, Robotics Engineer, BostonDynamics, 140000, Atlanta, You write control algorithms for robotic limbs and collaborate with mechanical engineers on joint calibration.
+15, Game Developer, Nintendo, 95000, Atlanta, You script gameplay logic in C++ and implement user feedback systems for upcoming Switch titles.
+16, Product Manager, Salesforce, 125000, Atlanta, You define quarterly roadmaps and manage cross functional teams to deliver CRM features on time and under budget.
+17, Full Stack Developer, Shopify, 112000, Atlanta, You write GraphQL APIs and implement responsive admin dashboards used by small business merchants.
+18, QA Engineer, Atlassian, 91000, Atlanta, You develop automated integration tests and work closely with developers to identify root causes of UI regressions.
+19, Cloud Engineer, Google, 128000, Atlanta, You deploy containerized applications using Kubernetes and troubleshoot issues in multiregion environments.
+20, Machine Learning Engineer, Tesla, 145000, Atlanta, You train object detection models for onboard vision systems and implement real time inference pipelines.
+21, Software Engineer, Microsoft, 120000, Atlanta, You write code for copilot.
