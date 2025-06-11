@@ -33,6 +33,16 @@ class Job:
             )
         return jobs
 
+    @classmethod
+    def query_jobs(cls, minimum_salary: int, location: str) -> str:
+        all_jobs = cls.jobs_from_file()
+        matched_jobs = ""
+        for job in all_jobs:
+            if job.get_salary() > minimum_salary and job.get_location() == location:
+                matched_jobs += f"{str(job)}\n"
+        return matched_jobs
+
+
     def __init__(self, title: str, company: str, salary: int, location: str, description: str | None = None, id: int | None = None,) -> None:
         if id == None:
             with open("API/Jobs.csv", "r") as f:

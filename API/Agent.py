@@ -1,7 +1,8 @@
+from abc import ABC, abstractmethod
+from dataclasses import dataclass
+from typing import List
 from google import genai
 from google.genai import types
-from typing import List
-from dataclasses import dataclass
 from Candidate import *
 from Gemini_Functions import *
 
@@ -26,6 +27,7 @@ class Message:
     recipient: str
     content: str
 
+@abstractmethod
 class Agent:
     """
     A core class that manages the context for a Gemini Agent and allows for prompting with [Messages]
@@ -46,7 +48,7 @@ class Agent:
     """
     def __init__(self, gemini_api_key: str) -> None:
         # Function instantiation
-        tools = types.Tool(function_declarations=[query_jobs_declaration])
+        tools = types.Tool(function_declarations=[query_jobs_declaration]) # type: ignore
         self.__config = types.GenerateContentConfig(tools=[tools])
         # Client instantiation
         self.__client = genai.Client(api_key=gemini_api_key)
@@ -78,25 +80,11 @@ class Agent:
         
         # Get response from Gemini
         response = self.__client.models.generate_content(model = "gemini-2.0-flash-001",
-                                                         contents = self.context,
+                                                         contents = self.context, # type: ignore
                                                          config=self.__config)
         
-        # Check to see if query jobs function was called
-        # TODO Implement differentiation for different model function calls
-        if response.candidates[0].content.parts[0].function_call: # type: ignore
-            # Parse actual funciton call from response
-            function_call = response.candidates[0].content.parts[0].function_call # type: ignore
-            minimum_salary = function_call.args["minimum_salary"] # type: ignore
-            location = function_call.args["location"] # type: ignore
-            # Actually call the function with the arguments provided by LLM
-            matching_jobs = query_jobs(minimum_salary, location)
-            # Update the conversation context to include job search and results
-            job_request_message = Message("Agent", "Job Database", f"query_jobs({minimum_salary}, {location})")
-            job_response_message = Message("Job Database", "Agent", matching_jobs)
-            self.add_conversation(job_request_message)
-            return self.get_response(job_response_message)
-
-        else:
+        # Check to see which function was called by model
+        if not response.candidates[0].content.parts[0].function_call: #type: ignore
             response_text = str(response.text)
         
             # Add the response to conversation history
@@ -105,6 +93,16 @@ class Agent:
             self.add_conversation(response_message)
 
             return response_text
+        
+        else:
+            return self.execute_gemini_function_calls(response)
+
+    @abstractmethod
+    def execute_gemini_function_calls(self, response) -> str:
+        """
+        This needs to be abstract because CandidateAgents and RecruitingAgents have different functions they can call.
+        """
+        pass
 
     def add_conversation(self, message) -> None:
         """
@@ -150,6 +148,20 @@ class CandidateAgent(Agent):
 
     Has access to the canidate's profile
     """
+    __CandidateAgent_functions = [
+        query_jobs_declaration,
+        set_candidate_ideal_salary_declaration,
+        set_candidate_minimum_salary_declaration,
+        set_candidate_location_declaration,
+        set_candidate_position_declaration,
+        set_candidate_job_description_declaration,
+        set_candidate_company_culture_declaration,
+        set_candidate_responsibilities_declaration,
+        set_candidate_work_experience_declaration,
+        set_candidate_education_declaration,
+        set_candidate_skills_declaration
+    ]
+
     def __init__(self, candidate: Candidate, gemini_api_key: str) -> None:
         super().__init__(gemini_api_key)
         self.__candidate = candidate
@@ -161,11 +173,52 @@ class CandidateAgent(Agent):
     def context(self) -> list[str]:
         return [super().get_behavioral_instructions(), str(self.__candidate), super().get_conversation_history_str()]
     
-    def set_desired_location(self, location: str) -> None:
-        self.__candidate.__job_desires.location = location
-    
-    def set_desired_salary(self, salary: int) -> None:
-        self.__candidate.__job_desires.ideal_salary = salary
+    def execute_gemini_function_calls(self, response) -> str:
+        """
+        Automatically updates the conversation history with the request message from AI to service and service to AI.
+        Automatically reprompts AI with the response message from the service.
+        Returns the final str response of the model once it has viewed the function response message.
+        """
+
+        # parse actual function call from response
+        function_call = response.candidates[0].content.parts[0].function_call # type: ignore
+        print(f"AGENT CALLED {function_call.name}({function_call.args})")
+
+        # EXTREAMLY UNSAFE 
+        """
+        for key, value in function_call.args.items():
+            print(key, value)
+        """
+
+        if function_call.name == "query_jobs": # type: ignore
+            # get arguments
+            minimum_salary = function_call.args["minimum_salary"] # type: ignore
+            location = function_call.args["location"] # type: ignore
+
+            # Actually call the function with the arguments provided by LLM
+            matching_jobs = Job.query_jobs(minimum_salary, location)
+
+            # Update the conversation to include the agents request to the job 
+            job_request_message = Message("Agent", "Job Database", f"query_jobs({minimum_salary}, {location})")
+            job_response_message = Message("Job Database", "Agent", matching_jobs)
+            self.add_conversation(job_request_message)
+            # reprompt gemini with new message
+            return self.get_response(job_response_message)
+        
+        elif function_call.name == "set_candidate_ideal_salary":
+            # set the candidates ideal salary
+            ideal_salary = function_call.args["ideal_salary"]
+            self.__candidate.set_ideal_salary(ideal_salary)
+            
+            # update conversation history
+            set_ideal_salary_message = Message("Agent", "Candidate Database", f"Candidate.set_ideal_salary({ideal_salary})")
+            set_ideal_salary_response = Message("Candidate Database", "Agent", f"Successfully set salary to {ideal_salary}")
+            self.add_conversation(set_ideal_salary_message)
+            # reprompt
+            return self.get_response(set_ideal_salary_response)
+        
+        else:
+            return ""
 
 class RecruitingAgent(Agent):
     """

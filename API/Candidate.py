@@ -15,15 +15,36 @@ class JobDesires:
     minimum_salary: Optional[int] = None
     location: Optional[str] = None
     position: Optional[str] = None
-    description: Optional[str] = None
+    job_description: Optional[str] = None
     
     # Semantic attributes
     company_culture: Optional[str] = None
     responsibilities: Optional[str] = None
-
-    def __str__(self):
-        return f"Ideal salary: {self.ideal_salary}, Minimum salary: {self.minimum_salary} location: {self.location}, position: {self.position}, description: {self.description}, company culture: {self.company_culture}, responsibilities: {self.responsibilities}"
     
+    def set_ideal_salary(self, salary: int):
+        self.ideal_salary = salary
+
+    def set_minimum_salary(self, salary: int):
+        self.minimum_salary = salary
+
+    def set_location(self, location: str):
+        self.location = location
+
+    def set_position(self, position: str):
+        self.position = position
+
+    def set_job_description(self, description: str):
+        self.job_description = description
+
+    def set_company_culture(self, culture: str):
+        self.company_culture = culture
+
+    def set_responsibilities(self, responsibilities: str):
+        self.responsibilities = responsibilities
+    
+    def __str__(self):
+        return f"Ideal salary: {self.ideal_salary}, Minimum salary: {self.minimum_salary} location: {self.location}, position: {self.position}, description: {self.job_description}, company culture: {self.company_culture}, responsibilities: {self.responsibilities}"
+
 @dataclass
 class Qualifications:
     """
@@ -32,6 +53,15 @@ class Qualifications:
     work_experience: Optional[List[str]] = None  # List of work experiences with company, role, duration, etc.
     education: Optional[List[str]] = None # List of educational qualifications
     skills: Optional[List[str]] = None # List of technical and soft skills
+
+    def set_work_experience(self, work_experience: list[str]):
+        self.work_experience = work_experience
+
+    def set_education(self, education: list[str]):
+        self.education = education
+
+    def set_skills(self, skills: list[str]):
+        self.skills = skills
 
     def __str__(self):
         return f"work experience: {self.work_experience}, education: {self.education}, skills: {self.skills}"
@@ -76,6 +106,38 @@ class Candidate:
         self.__qualifications = qualifications or Qualifications([], [], [])
         self.__offers: List[Job] = []  # List of job offers received
         
+    # --- JobDesires setters ---
+    def set_ideal_salary(self, salary: int):
+        self.__job_desires.set_ideal_salary(salary)
+
+    def set_minimum_salary(self, salary: int):
+        self.__job_desires.set_minimum_salary(salary)
+
+    def set_location(self, location: str):
+        self.__job_desires.set_location(location)
+
+    def set_position(self, position: str):
+        self.__job_desires.set_position(position)
+
+    def set_job_description(self, description: str):
+        self.__job_desires.set_job_description(description)
+
+    def set_company_culture(self, culture: str):
+        self.__job_desires.set_company_culture(culture)
+
+    def set_responsibilities(self, responsibilities: str):
+        self.__job_desires.set_responsibilities(responsibilities)
+
+    # --- Qualifications setters ---
+    def set_work_experience(self, work_experience: list[str]):
+        self.__qualifications.set_work_experience(work_experience)
+
+    def set_education(self, education: list[str]):
+        self.__qualifications.set_education(education)
+
+    def set_skills(self, skills: list[str]):
+        self.__qualifications.set_skills(skills)
+
     def __str__(self):
         return f"{self.__name} wants a job with the following information:\n{str(self.__job_desires)}\nThe candidate has the following qualifications: {str(self.__qualifications)}"
 
