@@ -107,11 +107,11 @@ class Candidate:
         self.__offers: List[Job] = []  # List of job offers received
         
     # --- JobDesires setters ---
-    def set_ideal_salary(self, salary: int):
-        self.__job_desires.set_ideal_salary(salary)
+    def set_ideal_salary(self, ideal_salary: int):
+        self.__job_desires.set_ideal_salary(ideal_salary)
 
-    def set_minimum_salary(self, salary: int):
-        self.__job_desires.set_minimum_salary(salary)
+    def set_minimum_salary(self, minimum_salary: int):
+        self.__job_desires.set_minimum_salary(minimum_salary)
 
     def set_location(self, location: str):
         self.__job_desires.set_location(location)

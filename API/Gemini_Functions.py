@@ -4,7 +4,7 @@ from Job import Job
 
 # Job class method
 query_jobs_declaration = {
-    "name": "query_jobs",
+    "name": "Job.query_jobs",
     "description": "Returns a list of string representations job listings that meet the minimum salary and location.",
     "parameters": {
         "type": "object",
@@ -24,7 +24,7 @@ query_jobs_declaration = {
 
 # JobDesires instance method
 set_candidate_ideal_salary_declaration = {
-    "name": "set_candidate_ideal_salary",
+    "name": "self.candidate.set_ideal_salary",
     "description": "Saves the candidate's desired salary for use in future prompt context.",
     "parameters": {
         "type": "object",
@@ -39,7 +39,7 @@ set_candidate_ideal_salary_declaration = {
 }
 
 set_candidate_minimum_salary_declaration = {
-    "name": "set_candidate_minimum_salary",
+    "name": "self.candidate.set_minimum_salary",
     "description": "Saves the candidate's minimum acceptable salary for use in future prompt context.",
     "parameters": {
         "type": "object",
@@ -54,7 +54,7 @@ set_candidate_minimum_salary_declaration = {
 }
 
 set_candidate_location_declaration = {
-    "name": "set_candidate_location",
+    "name": "self.candidate.set_location",
     "description": "Saves the candidate's preferred job location for use in future prompt context.",
     "parameters": {
         "type": "object",
@@ -69,7 +69,7 @@ set_candidate_location_declaration = {
 }
 
 set_candidate_position_declaration = {
-    "name": "set_candidate_position",
+    "name": "self.candidate.set_position",
     "description": "Saves the candidate's desired job position for use in future prompt context.",
     "parameters": {
         "type": "object",
@@ -84,7 +84,7 @@ set_candidate_position_declaration = {
 }
 
 set_candidate_job_description_declaration = {
-    "name": "set_candidate_job_description",
+    "name": "self.candidate.set_job_description",
     "description": "Saves the candidate's desired job description for use in future prompt context.",
     "parameters": {
         "type": "object",
@@ -99,7 +99,7 @@ set_candidate_job_description_declaration = {
 }
 
 set_candidate_company_culture_declaration = {
-    "name": "set_candidate_company_culture",
+    "name": "self.candidate.set_company_culture",
     "description": "Saves the candidate's preferred company culture for use in future prompt context.",
     "parameters": {
         "type": "object",
@@ -114,7 +114,7 @@ set_candidate_company_culture_declaration = {
 }
 
 set_candidate_responsibilities_declaration = {
-    "name": "set_candidate_responsibilities",
+    "name": "self.candidate.set_responsibilities",
     "description": "Saves the candidate's preferred job responsibilities for use in future prompt context.",
     "parameters": {
         "type": "object",
@@ -129,7 +129,7 @@ set_candidate_responsibilities_declaration = {
 }
 
 set_candidate_work_experience_declaration = {
-    "name": "set_candidate_work_experience",
+    "name": "self.candidate.set_work_experience",
     "description": "Saves the candidate's work experience for use in future prompt context.",
     "parameters": {
         "type": "object",
@@ -145,7 +145,7 @@ set_candidate_work_experience_declaration = {
 }
 
 set_candidate_education_declaration = {
-    "name": "set_candidate_education",
+    "name": "self.candidate.set_education",
     "description": "Saves the candidate's educational qualifications for use in future prompt context.",
     "parameters": {
         "type": "object",
@@ -161,7 +161,7 @@ set_candidate_education_declaration = {
 }
 
 set_candidate_skills_declaration = {
-    "name": "set_candidate_skills",
+    "name": "self.candidate.set_skills",
     "description": "Saves the candidate's skills for use in future prompt context.",
     "parameters": {
         "type": "object",

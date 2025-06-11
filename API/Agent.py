@@ -47,13 +47,11 @@ class Agent:
         gemini_api_key (str): API key for accessing the Google Gemini service.
     """
     def __init__(self, gemini_api_key: str) -> None:
-        # Function instantiation
-        tools = types.Tool(function_declarations=[query_jobs_declaration]) # type: ignore
-        self.__config = types.GenerateContentConfig(tools=[tools])
+
         # Client instantiation
         self.__client = genai.Client(api_key=gemini_api_key)
 
-        self.__behavioral_instructions = "Respoond to the last message in the conversation."
+        self.__behavioral_instructions = "Respoond to the last message in the conversation. Ensure you call the provided setter functions whenever a user divuldges new information."
         self.__conversation_history: List[Message] = []    
 
     @property
@@ -66,7 +64,8 @@ class Agent:
         """
         return [self.__behavioral_instructions, self.get_conversation_history_str()]
 
-    def get_response(self, message: Message) -> str:
+    
+    def get_response(self, message: Message, functions = []) -> str:
         """
         Gets a response from gemini
 
@@ -79,10 +78,17 @@ class Agent:
         self.add_conversation(message)
         
         # Get response from Gemini
-        response = self.__client.models.generate_content(model = "gemini-2.0-flash-001",
-                                                         contents = self.context, # type: ignore
-                                                         config=self.__config)
-        
+        # for when functions are passed. used in CandidateAgent overload
+        if functions != []:
+            tools = types.Tool(function_declarations=functions) # type: ignore
+            config =  types.GenerateContentConfig(tools=[tools])
+            response = self.__client.models.generate_content(model = "gemini-2.0-flash-001",
+                                                            contents = self.context, # type: ignore
+                                                            config = config)
+        else:
+            response = self.__client.models.generate_content(model = "gemini-2.0-flash-001",
+                                                contents = self.context) # type: ignore
+
         # Check to see which function was called by model
         if not response.candidates[0].content.parts[0].function_call: #type: ignore
             response_text = str(response.text)
@@ -164,15 +170,18 @@ class CandidateAgent(Agent):
 
     def __init__(self, candidate: Candidate, gemini_api_key: str) -> None:
         super().__init__(gemini_api_key)
-        self.__candidate = candidate
+        self.candidate = candidate
         self.__position_shortlist = []
         self.__position_offers = []
-        self.update_behavioral_instructions("You are a job searching agent having a conversation with the candidate you represent.")
+        self.update_behavioral_instructions("You are a job searching agent having a conversation with the candidate you represent. Your goal is to aquire information about a candidates qualifications and job desires, save this info with the setter functions, and help the candidate find a suitable job with the query_jobs function.")
     
     @property
     def context(self) -> list[str]:
-        return [super().get_behavioral_instructions(), str(self.__candidate), super().get_conversation_history_str()]
+        return [super().get_behavioral_instructions(), str(self.candidate), super().get_conversation_history_str()]
     
+    def get_response(self, message: Message, functions = __CandidateAgent_functions) -> str:
+        return super().get_response(message=message, functions=functions)
+
     def execute_gemini_function_calls(self, response) -> str:
         """
         Automatically updates the conversation history with the request message from AI to service and service to AI.
@@ -185,11 +194,26 @@ class CandidateAgent(Agent):
         print(f"AGENT CALLED {function_call.name}({function_call.args})")
 
         # EXTREAMLY UNSAFE 
-        """
-        for key, value in function_call.args.items():
-            print(key, value)
-        """
+        # Basically lets gemini evalate functions completly unsupervised and unsanitized
+        # A user could potentially evaluate whatever code they please with this by passing the correct arguments
 
+        argument_string = ""
+        for key, value in function_call.args.items():
+            if type(value) == str:
+                argument_string += f"{key} = \"{value}\", "
+            else:
+                argument_string += f"{key} = {value}, "
+        argument_string = argument_string[:-2] # delete that last comma
+        function_call_string = f"{function_call.name}({argument_string})"
+        print(function_call_string)
+        result = eval(function_call_string)
+        request_message = Message("Agent", "API", function_call_string)
+        response_message = Message("API", "Agent", result)
+        self.add_conversation(request_message)
+        return self.get_response(response_message)
+
+
+        """
         if function_call.name == "query_jobs": # type: ignore
             # get arguments
             minimum_salary = function_call.args["minimum_salary"] # type: ignore
@@ -219,6 +243,7 @@ class CandidateAgent(Agent):
         
         else:
             return ""
+        """
 
 class RecruitingAgent(Agent):
     """
