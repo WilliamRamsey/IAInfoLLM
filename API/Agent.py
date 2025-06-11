@@ -51,7 +51,7 @@ class Agent:
         # Client instantiation
         self.__client = genai.Client(api_key=gemini_api_key)
 
-        self.__behavioral_instructions = "Respoond to the last message in the conversation. Ensure you call the provided setter functions whenever a user divuldges new information."
+        self.__behavioral_instructions = "Respond to the last message in the conversation. Ensure you call the provided setter functions whenever a user divuldges new information. Do not announce your function calls to the user. The conversation history is for your reference. Do not attempt to copy the to-from formatting it uses in your messages to the user."
         self.__conversation_history: List[Message] = []    
 
     @property

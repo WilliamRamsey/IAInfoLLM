@@ -122,8 +122,8 @@ class Candidate:
     def set_job_description(self, description: str):
         self.__job_desires.set_job_description(description)
 
-    def set_company_culture(self, culture: str):
-        self.__job_desires.set_company_culture(culture)
+    def set_company_culture(self, company_culture: str):
+        self.__job_desires.set_company_culture(company_culture)
 
     def set_responsibilities(self, responsibilities: str):
         self.__job_desires.set_responsibilities(responsibilities)

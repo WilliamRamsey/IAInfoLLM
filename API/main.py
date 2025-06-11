@@ -16,8 +16,8 @@ Agent calls setter instance methods of the candidate to update information.
 load_dotenv()
 
 # Instantiate Canidate
-myJobDesires = JobDesires(100000, 75000, "Atlanta", "Software Developer")
-myQualifications = Qualifications(["Purdue CS Teaching Assistant", "Microsoft Backend Developer"], ["BS in Computer Engineering - Purdue University"], ["Python", "Java", "C++"])
+myJobDesires = JobDesires()
+myQualifications = Qualifications()
 
 myCanidate = Candidate("William Ramsey", "williamdawsonramsey@gmail.com", myJobDesires, myQualifications)
 
